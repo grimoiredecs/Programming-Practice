@@ -43,7 +43,39 @@ vector<vector<string>> solveNQueens(int n)
     return res;
 
     }
+vector<vector<string>> solveNQueens2(int n)
+{
+    set<int> cols, diag1, diag2;
+    vector<vector<string>> res;
+    vector<string> tmp;
+    string s(n, '.');
 
+    function<void(int)> dfs = [&](int row)
+    {
+        if(row == n)
+        {
+            res.push_back(tmp);
+            return;
+        }
+        for(int col = 0; col < n; col++)
+        {
+            if(cols.count(col) || diag1.count(row + col) || diag2.count(row - col)) continue;
+            cols.insert(col);
+            diag1.insert(row + col);
+            diag2.insert(row - col);
+            tmp.push_back(s.substr(0, col) + "Q" + s.substr(col + 1));
+            dfs(row + 1);
+            tmp.pop_back();
+            cols.erase(col);
+            diag1.erase(row + col);
+            diag2.erase(row - col);
+        }
+    };
+
+    dfs(0);
+    return res;
+    
+}
 
 int main()
 {
