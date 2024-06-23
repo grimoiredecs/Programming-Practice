@@ -1,20 +1,22 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <unordered_map>
 
 using namespace std;
 
-void solve(string digits, string res, int i , string mapping[], vector<string>& ans){
-    if (i >= digits.length()){
+void solve(string digits, string res, int i, unordered_map<char, string>& mapping, vector<string>& ans) {
+    if (i >= digits.length()) {
         ans.push_back(res);
         return;
     }
-    int num = digits[i]-'0';
-
+    char num = digits[i];
+    string letters = mapping[num];
+    for (int j = 0; j < letters.length(); j++) {
+        solve(digits, res + letters[j], i + 1, mapping, ans);
+    }
 }
-vector<string> letterCombinations(string digits) {
 
+vector<string> letterCombinations(string digits) {
     unordered_map<char, string> phone;
     phone['2'] = "abc";
     phone['3'] = "def";
@@ -24,13 +26,18 @@ vector<string> letterCombinations(string digits) {
     phone['7'] = "pqrs";
     phone['8'] = "tuv";
     phone['9'] = "wxyz";
-    int n = digits.size();
 
-    vector<string> res ;
-
-
+    vector<string> res;
+    if (digits.empty()) return res; // Handle the edge case where digits is empty
+    solve(digits, "", 0, phone, res);
+    return res;
 }
-int main(){
 
+int main() {
+    string digits = "23";
+    vector<string> res = letterCombinations(digits);
+    for (int i = 0; i < res.size(); i++) {
+        cout << res[i] << endl;
+    }
     return 0;
 }
