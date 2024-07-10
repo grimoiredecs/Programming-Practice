@@ -17,12 +17,12 @@ using namespace std;
 // just try to get the BIGGEST LEAP from each entry in the vector
 int jump(vector<int>& nums) {
     int n = nums.size();
-    for(int i =0; i < nums.size(); i++){
-        nums[i] = max(nums[i-1], nums[i]+i);
+    for(int i =1; i < nums.size(); i++){
+        nums[i] = max(nums[i-1], i+nums[i]);
     }
     int idx = 0;
     int res=0;
-    while(idx < n){
+    while(idx < n-1){
         res++;
         idx = nums[idx];
     }
@@ -32,6 +32,8 @@ int jump(vector<int>& nums) {
 
 
 int main(){
+    vector<int> arr{2,3,1,1,4};
+    cout << jump(arr);
 
     return 0;
 }
