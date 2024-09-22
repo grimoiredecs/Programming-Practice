@@ -1,8 +1,9 @@
 {
-    "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "functional": "cpp",
-        "cstdlib": "cpp"
-    }
+  "files.associations": {
+    "iostream": "cpp",
+    "vector": "cpp",
+    "functional": "cpp",
+    "cstdlib": "cpp"
+  },
+  "python.REPL.enableREPLSmartSend": false
 }
