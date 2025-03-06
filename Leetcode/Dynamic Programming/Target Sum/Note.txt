@@ -1,6 +1,0 @@
-Partition into 2 subsets:
-    The set with positive signs
-    The set with negative signs
-    The difference of these 2 sets is the target itself
-
-
